@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: 260 20% 98%;
+  --color-foreground: 260 25% 15%;
+
+  --color-card: 0 0% 100%;
+  --color-card-foreground: 260 25% 15%;
+
+  --color-popover: 0 0% 100%;
+  --color-popover-foreground: 260 25% 15%;
+
+  --color-primary: 270 70% 50%;
+  /* Deep Purple */
+  --color-primary-foreground: 0 0% 100%;
+
+  --color-secondary: 45 90% 60%;
+  /* Gold */
+  --color-secondary-foreground: 30 40% 20%;
+
+  --color-muted: 260 10% 90%;
+  --color-muted-foreground: 260 5% 45%;
+
+  --color-accent: 270 60% 95%;
+  --color-accent-foreground: 270 70% 40%;
+
+  --color-destructive: 0 84% 60%;
+  --color-destructive-foreground: 0 0% 98%;
+
+  --color-border: 260 20% 90%;
+  --color-input: 260 20% 90%;
+  --color-ring: 270 70% 50%;
+}
+
+/* Dark mode overrides would typically use a media query or a class strategy in v4 differently, 
+   but for now let's stick to standard CSS variables that update based on class if we keep the .dark strategy 
+   or just use the root. 
+   
+   Tailwind v4 theme config is a bit different. 
+   However, since we are using CSS variables for colors, we can just declare the variables 
+   and Tailwind v4 will pick them up if mapped, or we just use raw CSS variables in utility classes 
+   if we defined them in standard CSS.
+   
+   Actually, the easiest fix for v4 compatibility with existing code (which uses bg-primary etc)
+   is to define the theme values mapping to these variables.
+*/
+
+:root {
+  --background: 260 20% 98%;
+  --foreground: 260 25% 15%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 260 25% 15%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 260 25% 15%;
+
+  --primary: 270 70% 50%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 45 90% 60%;
+  --secondary-foreground: 30 40% 20%;
+
+  --muted: 260 10% 90%;
+  --muted-foreground: 260 5% 45%;
+
+  --accent: 270 60% 95%;
+  --accent-foreground: 270 70% 40%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 260 20% 90%;
+  --input: 260 20% 90%;
+  --ring: 270 70% 50%;
+}
+
+.dark {
+  --background: 260 30% 10%;
+  --foreground: 260 10% 95%;
+
+  --card: 260 30% 15%;
+  --card-foreground: 260 10% 95%;
+
+  --popover: 260 30% 15%;
+  --popover-foreground: 260 10% 95%;
+
+  --primary: 270 70% 60%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 45 90% 60%;
+  --secondary-foreground: 30 40% 20%;
+
+  --muted: 260 30% 20%;
+  --muted-foreground: 260 10% 65%;
+
+  --accent: 260 30% 25%;
+  --accent-foreground: 260 10% 95%;
+
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 0 85% 95%;
+
+  --border: 260 30% 25%;
+  --input: 260 30% 25%;
+  --ring: 270 70% 60%;
+}
+
+
+/* 
+  In v4, to map these variables to utilities like bg-primary, we use @theme.
+  We need to map the colors to the variables we defined correctly.
+*/
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Custom Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+}
