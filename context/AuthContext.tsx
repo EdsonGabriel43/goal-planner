@@ -23,7 +23,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         const setData = async () => {
             const { data: { session }, error } = await supabase.auth.getSession();
-            if (error) throw error;
+            if (error) {
+                console.error("Auth session error:", error);
+            }
             setSession(session);
             setUser(session?.user ?? null);
             setLoading(false);
@@ -44,7 +46,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const signOut = async () => {
         await supabase.auth.signOut();
-        router.push("/login");
+        router.push("/login"); // Force redirect to login on sign out
     };
 
     return (
