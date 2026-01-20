@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google"; // or Outfit if requested, sticking to defaults first but Inter is good
+import { Outfit } from "next/font/google"; // Switched to Outfit for Premium Look
 import "./globals.css";
 import { GoalProvider } from "@/context/GoalContext";
 
-const inter = Inter({ subsets: ["latin"] });
+const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Planejador de Metas Premium",
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen bg-background antialiased selection:bg-primary/20`}>
+      <body className={`${outfit.className} min-h-screen bg-background antialiased selection:bg-secondary/30`}>
         <GoalProvider>
           {children}
         </GoalProvider>
