@@ -19,6 +19,7 @@ export interface Goal {
     id: string;
     category: GoalCategory;
     what: string;
+    why?: string;
     number: string;
     when: string;
     guardian: string;
@@ -104,7 +105,7 @@ export const GoalProvider = ({ children }: { children: ReactNode }) => {
 
             if (goalsData) {
                 // Map DB columns to Frontend interface
-                const mappedGoals: Goal[] = goalsData.map(g => ({
+                const mappedGoals: Goal[] = goalsData.map((g: any) => ({
                     id: g.id,
                     category: g.category as GoalCategory, // Assuming strict typing matches
                     what: g.title,
@@ -126,7 +127,7 @@ export const GoalProvider = ({ children }: { children: ReactNode }) => {
                 .order('created_at', { ascending: true });
 
             if (initiativesData) {
-                const mappedInitiatives: Initiative[] = initiativesData.map(i => ({
+                const mappedInitiatives: Initiative[] = initiativesData.map((i: any) => ({
                     id: i.id,
                     goalId: i.goal_id,
                     text: i.description,
@@ -145,7 +146,7 @@ export const GoalProvider = ({ children }: { children: ReactNode }) => {
                 .order('created_at', { ascending: true });
 
             if (saboteursData) {
-                setSaboteurs(saboteursData as Saboteur[]);
+                setSaboteurs(saboteursData as unknown as Saboteur[]);
             }
         };
 
