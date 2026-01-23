@@ -19,11 +19,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${outfit.className} min-h-screen bg-background antialiased selection:bg-secondary/30`}>
-        <GoalProvider>
-          <AuthProvider>
+        <AuthProvider>
+          <GoalProvider>
             {children}
-          </AuthProvider>
-        </GoalProvider>
+          </GoalProvider>
+        </AuthProvider>
       </body>
     </html>
   );
